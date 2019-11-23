@@ -36,7 +36,8 @@ const LoginForm = (props) => {
 
     useEffect(() => {
         document.title = 'Logowanie - bezinteresowni';
-        if (JSON.parse(sessionStorage.getItem('user')).api_token) {
+        const user = JSON.parse(sessionStorage.getItem('user'));
+        if (user) {
             props.history.push("/");
         }
     });
