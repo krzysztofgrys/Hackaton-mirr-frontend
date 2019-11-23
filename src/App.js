@@ -35,35 +35,6 @@ class App extends React.Component {
             </div>
         );
     }
-
-    componentDidMount() {
-        if (typeof (Storage) !== "undefined") {
-            sessionStorage.user = JSON.stringify({
-                id: 1,
-                email: 'user@bezinteresowni.pl',
-                email_verified_at: null,
-                created_at: '2019-11-23 15:05:14',
-                updated_at: '2019-11-23 15:05:14',
-                first_name: 'przykładowy',
-                last_name: 'użytkownik',
-                date_of_birth: '1969-11-23 00:00:00',
-                phone_number: '123555789',
-                addresses_id: 1,
-                address: {
-                    id: 1,
-                    city: 'Wrocław',
-                    zip_code: '53-030',
-                    street: 'Pl Powstańców Śląskich',
-                    house_number: '7',
-                    lat: 51.21,
-                    lng: 17.2
-                }
-            });
-            console.log(JSON.parse(sessionStorage.user));
-        } else {
-            console.error('Your browser does not support local storage.');
-        }
-    }
 }
 
 export default App;
