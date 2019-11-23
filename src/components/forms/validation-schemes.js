@@ -9,3 +9,8 @@ export const loginValidationSchema = object({
 export const addPostFirstStepForValidationSchema = object({
     expirationTime: string().required("A radio option is required")
 });
+
+
+export const addPostSecondStepForValidationSchema = object({
+    message: string().required("A message is required")
+});

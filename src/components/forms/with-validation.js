@@ -1,9 +1,9 @@
 import React from 'react';
 import set from "lodash/set";
 
-function withValidation(WrappedComponent, schema) {
+function withValidation(WrappedComponent) {
     return class extends React.Component {
-        validate = () => {
+        validate = schema => {
             return values => {
                 return schema.validate(values, {abortEarly: false}).then(
                     () => {

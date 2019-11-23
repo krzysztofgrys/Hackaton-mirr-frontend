@@ -11,7 +11,7 @@ import {
 import {loginValidationSchema} from "../validation-schemes";
 import withValidation from '../with-validation';
 
-const Login = (props) => {
+const LoginForm = (props) => {
     const form = useFormState({
         values: {name: "", password: ''},
         onSubmit: props.validate()
@@ -35,4 +35,8 @@ const Login = (props) => {
     );
 };
 
-export default withValidation(Login, loginValidationSchema)
+
+
+
+
+export default withValidation(LoginForm, loginValidationSchema)
