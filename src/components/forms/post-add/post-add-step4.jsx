@@ -10,7 +10,7 @@ import {
 import withValidation from "../with-validation";
 import {addPostFirstStepForValidationSchema} from "../validation-schemes";
 
-const PostAddStep1 = (props) => {
+const PostAddStep4 = (props) => {
     const form = useFormState({
         values: {expirationTime: ""},
         onValidate: props.validate(),
@@ -34,4 +34,4 @@ const PostAddStep1 = (props) => {
     );
 };
 
-export default withValidation(PostFormStep1, addPostFirstStepForValidationSchema);
+export default withValidation(PostAddStep4, addPostFirstStepForValidationSchema);

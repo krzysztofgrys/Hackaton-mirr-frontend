@@ -17,7 +17,6 @@ const Login = (props) => {
         onSubmit: props.validate()
     });
 
-
     return (
         <Form {...form}>
             <FormLabel {...form} name="email">
