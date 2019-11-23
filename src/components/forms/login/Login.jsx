@@ -1,71 +1,39 @@
 import React from 'react';
+
 import {
     unstable_Form as Form,
     unstable_FormInput as FormInput,
     unstable_FormLabel as FormLabel,
     unstable_FormMessage as FormMessage,
     unstable_FormSubmitButton as FormSubmitButton,
-    unstable_FormRemoveButton as FormRemoveButton,
-    unstable_FormPushButton as FormPushButton,
-    unstable_useFormState as useFormState
+    unstable_useFormState as useFormState,
 } from "reakit/Form";
-import withValidation from "../withValidation";
+import {loginValidationSchema} from "../validation-schemes";
+import withValidation from '../with-validation';
 
-const form = useFormState({
-    values: {
-        people: [{name: "", email: ""}]
-    },
-    onValidate: values => {
-        const errors = {};
-        values.people.forEach((value, i) => {
-            if (!value.email) {
-                if (!errors.people) {
-                    errors.people = [];
-                }
-                if (!errors.people[i]) {
-                    errors.people[i] = {};
-                }
-                errors.people[i].email =
-                    "We can't sell data without an email, can we?";
-            }
-        });
-        if (Object.keys(errors).length) {
-            throw errors;
-        }
-    },
-    onSubmit: values => {
-        alert(JSON.stringify(values, null, 2));
-    }
-});
+const Login = (props) => {
+    const form = useFormState({
+        values: {name: "", password: ''},
+        onSubmit: props.validate()
+    });
 
-const login = () => {
+
     return (
         <Form {...form}>
-            {form.values.people.map((_, i) => (
-                <React.Fragment key={i}>
-                    <FormLabel {...form} name={["people", i, "name"]}>
-                        Name
-                    </FormLabel>
-                    <FormInput {...form} name={["people", i, "name"]}/>
-                    <FormMessage {...form} name={["people", i, "name"]}/>
-                    <FormLabel {...form} name={["people", i, "email"]}>
-                        Email
-                    </FormLabel>
-                    <FormInput {...form} type="email" name={["people", i, "email"]}/>
-                    <FormMessage {...form} name={["people", i, "email"]}/>
-                    <FormRemoveButton {...form} name="people" index={i}>
-                        Remove person
-                    </FormRemoveButton>
-                </React.Fragment>
-            ))}
-            <br/>
-            <br/>
-            <FormPushButton {...form} name="people" value={{name: "", email: ""}}>
-                Add person
-            </FormPushButton>
+            <FormLabel {...form} name="email">
+                Adres e-mail:
+            </FormLabel>
+            <FormInput {...form} name="email"/>
+            {form.errors.email && <span>{form.errors.email}</span>}
+            <FormLabel {...form} name="password">
+                Hasło:
+            </FormLabel>
+            <FormInput {...form} name="password" placeholder="John Doe"/>
+            {form.errors.password && <span>{form.errors.password}</span>}
+            <FormMessage {...form} name="name"/>
             <FormSubmitButton {...form}>Submit</FormSubmitButton>
         </Form>
     );
 };
 
-export default withValidation(login);
+export default withValidation(Login, loginValidationSchema)
