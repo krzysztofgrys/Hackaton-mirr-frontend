@@ -1,5 +1,7 @@
 import React from 'react';
 
-export default function PostView() {
-    return <div>View post</div>;
+export default class PostView extends React.Component {
+    render() {
+        return <div>post view</div>;
+    }
 }
