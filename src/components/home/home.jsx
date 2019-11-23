@@ -12,7 +12,7 @@ export default function Home() {
                             tristique odio rhoncus auctor urna
                             tincidunt nec.</p>
                         <div className="d-flex flex-column">
-                            <button className="btn btn-primary mb-2">Dodaj ogłoszenie</button>
+                            <button className="btn btn-secondary mb-2">Dodaj ogłoszenie</button>
                             <button className="btn btn-primary mb-2">Przeglądaj ogłoszenia</button>
                             <button className="btn btn-link">Jak to działa?</button>
                         </div>

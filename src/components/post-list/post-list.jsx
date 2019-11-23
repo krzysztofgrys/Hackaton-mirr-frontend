@@ -1,29 +1,39 @@
-import React, {useEffect} from 'react';
-import Modal from '../modal';
-import { useDialogState, DialogDisclosure } from "reakit/Dialog";
+import React, {useEffect, useState} from 'react';
 import Map from '../map';
 import Autocomplete from 'react-google-autocomplete';
+import {Button} from "reakit/Button";
+import PostGrid from "../post-grid";
 
 export default function PostList() {
-    const dialog = useDialogState();
+    const [browserLocation, setBrowserLocation] = useState({
+        latitude: 51.107883,
+        longitude: 17.038538
+    });
 
     useEffect(() => {
-       console.log('component did mount');
+        console.log('component did mount');
     }, []);
 
-    return (<div>
-        <Autocomplete
-            style={{width: '90%'}}
-            onPlaceSelected={(place) => {
-                console.log(place);
-            }}
-            types={['(regions)']}
-            componentRestrictions={{country: "pl"}}
-        />
-        <DialogDisclosure {...dialog}>Widok mapy</DialogDisclosure>
-        <Modal dialog={dialog}>
-            <aside>side menu</aside>
-            <Map className='vh-100 w-100'/>
-        </Modal>
-    </div>);
+    const getLocation = () => {
+        navigator.geolocation.getCurrentPosition(
+            ({coords}) => setBrowserLocation(coords),
+            () => setBrowserLocation(null)
+        );
+    };
+
+    return (
+        <React.Fragment>
+            <Button onClick={getLocation}>Moja lokalizacja</Button>
+            <Autocomplete
+                style={{width: '90%'}}
+                onPlaceSelected={(place) => {
+                    console.log(place);
+                }}
+                types={['geocode']}
+                componentRestrictions={{country: "pl"}}
+            />
+            <PostGrid posts={[]}/>
+            {/*<Map className='vh-100 w-100' />*/}
+        </React.Fragment>
+    );
 }

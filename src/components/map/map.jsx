@@ -1,30 +1,34 @@
-import React from 'react';
+import React, {useState} from 'react';
 import GoogleMapReact from 'google-map-react';
 
-function map(props) {
-    const defaultProps = {
-        center: {
-            lat: 59.95,
-            lng: 30.33
-        },
-        zoom: 11
-    };
+export default function Map(props) {
+    const {location, className} = props;
+    // const [currentLocation, setCurrentLocation] = useState(null);
+    // const [prevLocation, setPrevLocation] = useState(null);
+    // const [address, setAddress] = useState(null);
+
+    // const zoom = 11;
+
+    // handle derived state:
+    // if (location !== null && location !== prevLocation) {
+    //     console.log(location);
+    //     setPrevLocation(location);
+    // }
+
     return (
-        <div className={props.className}>
+        <div className={className}>
+            <h3>Mapa</h3>
+            <span></span>
             <GoogleMapReact
                 bootstrapURLKeys={{ key: 'AIzaSyC0OYo0y89IrrKviqJE2vcb_vCcKYhde4k' }}
-                defaultCenter={defaultProps.center}
-                defaultZoom={defaultProps.zoom}
+                defaultCenter={{
+                    latitude: 51.107883,
+                    longitude: 17.038538
+                }}
+                defaultZoom={11}
             >
-                {props.children}
-                {/*<AnyReactComponent*/}
-                {/*    lat={59.955413}*/}
-                {/*    lng={30.337844}*/}
-                {/*    text="My Marker"*/}
-                {/*/>*/}
             </GoogleMapReact>
         </div>
     );
 }
 
-export default map;
