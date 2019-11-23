@@ -1,14 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import logo from './logo.svg';
+import logo from './assets/bezinteresowni-logo.svg';
 import './scss/bootstrap/main.scss';
 import axe from 'react-axe';
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import Home from './components/home';
-import Login from './components/login';
-import PostAdd from './components/post-add';
-import PostView from './components/post-view';
-import PostList from './components/post-list';
+import Routing from './components/routing';
 
 if (process.env.NODE_ENV !== 'production') {
     axe(React, ReactDOM, 1000);
@@ -18,45 +13,31 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <header className="App-header">
-                    {/*<img src={logo} className="App-logo" alt="logo"/>*/}
-                    <p className='text-primary'>
-                        Edit <code>src/App.js</code> and save to reload.
-                    </p>
-                    <a
-                        className="App-link"
-                        href="https://reactjs.org"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Learn React
-                    </a>
+                <header className="navbar px-md-4 d-flex justify-content-between border-bottom box-shadow">
+                    <div className="container">
+                        <a className="navbar-brand">
+                            <img src={logo} alt="logo portalu bezinteresowni"/>
+                        </a>
+                        <div>
+                            <button className="btn btn-primary">Zaloguj</button>
+                            <button className="btn btn-secondary">Zarejestruj</button>
+                        </div>
+                    </div>
                 </header>
-                <Router>
-                    <Switch>
-                        <Route path="/login">
-                            <Login/>
-                        </Route>
-                        <Route path="/post/add">
-                            <PostAdd/>
-                        </Route>
-                        <Route path="/post/list">
-                            <PostList/>
-                        </Route>
-                        <Route path="/post/:postId">
-                            <PostView/>
-                        </Route>
-                        <Route path="/">
-                            <Home/>
-                        </Route>
-                    </Switch>
-                </Router>
+                <main className="container">
+                    <div className="content row">
+                        <Routing/>
+                    </div>
+                </main>
+                <footer className="fixed-bottom border-top">
+                    footer content ?
+                </footer>
             </div>
         );
     }
 
     componentDidMount() {
-        if (typeof(Storage) !== "undefined") {
+        if (typeof (Storage) !== "undefined") {
             sessionStorage.user = JSON.stringify({
                 id: 1,
                 email: 'user@bezinteresowni.pl',

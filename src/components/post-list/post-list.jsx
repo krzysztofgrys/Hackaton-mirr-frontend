@@ -20,9 +20,10 @@ export default function PostList() {
             types={['(regions)']}
             componentRestrictions={{country: "pl"}}
         />
-        <DialogDisclosure {...dialog}>Open</DialogDisclosure>
+        <DialogDisclosure {...dialog}>Widok mapy</DialogDisclosure>
         <Modal dialog={dialog}>
-            <Map/>
+            <aside>side menu</aside>
+            <Map className='vh-100 w-100'/>
         </Modal>
     </div>);
 }

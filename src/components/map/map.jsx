@@ -10,7 +10,7 @@ function map(props) {
         zoom: 11
     };
     return (
-        <div className='vh-100 w-100'>
+        <div className={props.className}>
             <GoogleMapReact
                 bootstrapURLKeys={{ key: 'AIzaSyC0OYo0y89IrrKviqJE2vcb_vCcKYhde4k' }}
                 defaultCenter={defaultProps.center}
