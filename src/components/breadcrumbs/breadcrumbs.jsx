@@ -14,9 +14,8 @@ export default function Breadcrumbs() {
     const locationElements = location.pathname.split('/').filter(Boolean);
     const breadcrumbs = [routes.find(route => route.path === '/')];
     locationElements.forEach(route => {
-        breadcrumbs.push(breadcrumbsMap[route]);
+        breadcrumbsMap[route] && breadcrumbs.push(breadcrumbsMap[route]);
     });
-
     const breadcrumbsRenderedElements = breadcrumbs
         .map((breadcrumb, index) =>
             <li key={index}>
