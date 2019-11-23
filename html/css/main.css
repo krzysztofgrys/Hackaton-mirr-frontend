@@ -2,22 +2,8 @@ html, body {
   height: 100%;
 }
 
-.left-column {
-  padding-top: 100px;
-  flex-direction: column;
-}
-
-.width-300 {
-  width: 300px;
-}
-
-.right-wrapper p,
-.left-column p {
-  width: 300px;
-}
-
-.hands-image {
-  max-width: 400px;
+.buttons {
+  width: 220px;
 }
 
 .buttons .btn {
