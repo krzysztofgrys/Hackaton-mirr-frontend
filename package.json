@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "google-maps-react": "^2.0.2",
     "lodash": "latest",
     "node-sass": "^4.13.0",
     "react": "^16.12.0",
