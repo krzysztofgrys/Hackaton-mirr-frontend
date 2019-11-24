@@ -1,5 +1,6 @@
 import React from 'react';
 import handsBackground from '../../assets/hands-bg.svg';
+import LinkButton from "../link-button";
 
 export default function Home() {
     return (
@@ -12,9 +13,9 @@ export default function Home() {
                             tristique odio rhoncus auctor urna
                             tincidunt nec.</p>
                         <div className="d-flex flex-column">
-                            <button className="btn btn-secondary mb-2">Dodaj ogłoszenie</button>
-                            <button className="btn btn-primary mb-2">Przeglądaj ogłoszenia</button>
-                            <button className="btn btn-link">Jak to działa?</button>
+                            <LinkButton to='/posts/add' className="btn btn-secondary mb-2">Dodaj ogłoszenie</LinkButton>
+                            <LinkButton to='/posts' className="btn btn-primary mb-2">Przeglądaj ogłoszenia</LinkButton>
+                            <LinkButton className="btn text-secondary btn-link">Jak to działa?</LinkButton>
                         </div>
                     </div>
                 </div>
@@ -26,7 +27,7 @@ export default function Home() {
                         <p>Sem tristique odio rhoncus auctor
                             urna tincidunt nec.Interdum amet,
                             odio et sed id mi eget in. </p>
-                        <button className="btn btn-light">Samouczek</button>
+                        <button className="btn btn-primary">Samouczek</button>
                     </div>
 
                 </div>

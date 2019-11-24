@@ -1,8 +1,13 @@
 import React from 'react';
 import LoginForm from "../forms/login/Login";
 import Logo from '../../assets/logo.png'
+import {Redirect} from "react-router-dom/";
 
 export default function Login() {
+    const isUserLoggedIn = sessionStorage.hasOwnProperty('user');
+    if (isUserLoggedIn) {
+        return <Redirect to='/'/>
+    }
     return (
         <main className="container">
             <div className="content">
