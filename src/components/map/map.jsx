@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import GoogleMapReact from 'google-map-react';
+import {Map as GMap, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
-export default function Map(props) {
+ function Map(props) {
     const {location, className} = props;
     // const [currentLocation, setCurrentLocation] = useState(null);
     // const [prevLocation, setPrevLocation] = useState(null);
@@ -19,16 +19,15 @@ export default function Map(props) {
         <div className={className}>
             <h3>Mapa</h3>
             <span></span>
-            <GoogleMapReact
-                bootstrapURLKeys={{ key: 'AIzaSyC0OYo0y89IrrKviqJE2vcb_vCcKYhde4k' }}
-                defaultCenter={{
-                    latitude: 51.107883,
-                    longitude: 17.038538
-                }}
-                defaultZoom={11}
-            >
-            </GoogleMapReact>
+            <GMap google={props.google} zoom={14}>
+      
+              
+            </GMap>
         </div>
     );
 }
+
+export default GoogleApiWrapper({
+  apiKey: ('AIzaSyC0OYo0y89IrrKviqJE2vcb_vCcKYhde4k')
+})(Map)
 
