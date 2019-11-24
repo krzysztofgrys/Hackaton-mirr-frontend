@@ -46,3 +46,9 @@ footer {
 .card.yellow .card-bg {
   background-color: #FFE500;
 }
+
+/* post page starts here */
+
+.no-image-placeholder {
+  width: 100%;
+}
