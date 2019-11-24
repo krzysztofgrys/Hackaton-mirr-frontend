@@ -4,7 +4,7 @@ import logo from './assets/bezinteresowni-logo.svg';
 import './scss/bootstrap/main.scss';
 import axe from 'react-axe';
 import Routing from './components/routing';
-import {BrowserRouter as Router, Link} from "react-router-dom";
+import {BrowserRouter as Router, Link, withRouter} from "react-router-dom";
 import Breadcrumbs from "./components/breadcrumbs";
 import LinkButton from "./components/link-button";
 
@@ -13,22 +13,26 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default function App() {
-    const isUserLoggedIn = () => sessionStorage.hasOwnProperty('user');
-    const getUser = () => JSON.parse(sessionStorage.getItem('user'));
+    const isUserLoggedIn = sessionStorage.hasOwnProperty('user');
+    const user = JSON.parse(sessionStorage.getItem('user'));
+
     const LoginSection = () => {
-        const user = getUser();
         return (
             <div>
-                {!isUserLoggedIn() && <LinkButton to='/login' className="btn btn-primary">Zaloguj</LinkButton>}
-                {!isUserLoggedIn() && <LinkButton to='/' className="btn btn-secondary">Zarejestruj</LinkButton>}
-                {isUserLoggedIn() && `Witaj ${user.first_name}!`}
+                {!isUserLoggedIn && <LinkButton to='/login' className="btn btn-primary">Zaloguj</LinkButton>}
+                {!isUserLoggedIn && <LinkButton to='/' className="btn btn-secondary ml-1">Zarejestruj</LinkButton>}
+                {isUserLoggedIn && `Witaj ${user.first_name}!`}
             </div>
         );
     };
 
-    return (
-        <div className="App">
-            <Router>
+    const Header = (props) => {
+        const {location: {pathname}} = props;
+        if (pathname === '/login') {
+            return null;
+        }
+        return (
+            <React.Fragment>
                 <header className="navbar px-md-4 d-flex justify-content-between border-bottom box-shadow">
                     <div className="container">
                         <Link className="navbar-brand" to="/">
@@ -38,14 +42,20 @@ export default function App() {
                     </div>
                 </header>
                 <Breadcrumbs/>
+            </React.Fragment>);
+    };
+
+    const HeaderWithRouter = withRouter(Header);
+
+    return (
+        <div className="App">
+            <Router>
+                {<HeaderWithRouter/>}
                 <main className="container">
                     <div className="content row">
                         <Routing/>
                     </div>
                 </main>
-                <footer className="border-top">
-                    footer content ?
-                </footer>
             </Router>
         </div>
     );

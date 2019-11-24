@@ -53,7 +53,7 @@ const LoginForm = (props) => {
 
     return (
         <React.Fragment>
-            <Loader hid={hideLoader}/>
+            <Loader hide={hideLoader}/>
             <Form {...form}>
                 <div className="form-label-group">
                     <FormLabel {...form} name="email">
