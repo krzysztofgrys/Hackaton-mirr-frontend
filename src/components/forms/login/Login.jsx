@@ -30,6 +30,8 @@ const LoginForm = (props) => {
 
     const form = useFormState({
         values: {name: "", password: ''},
+        validateOnBlur: false,
+        validateOnChange: false,
         onValidate: props.validate(loginValidationSchema),
         onSubmit: (data) => getLoginData(data)
     });
