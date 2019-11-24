@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Autocomplete from 'react-google-autocomplete';
-import PostGrid from "../post-grid";
+import PostGrid from '../post-grid';
+import Loader from '../loader';
 
 export default function PostList() {
     const [location, setLocation] = useState({
@@ -9,6 +10,7 @@ export default function PostList() {
     });
     const [distance, setDistance] = useState(20);
     const [posts, setPosts] = useState([]);
+    const [hideLoader, setHideLoader] = useState(true);
 
     const onPlaceSelect = (place) => {
         setLocation({
@@ -25,7 +27,8 @@ export default function PostList() {
             distance: parseInt(distance) * 1000, //meters
             api_token: user.api_token
         };
-        const queryParamString = new URLSearchParams(data).toString()
+        const queryParamString = new URLSearchParams(data).toString();
+        setHideLoader(false);
         await fetch(`${window.urlApi}posts?${queryParamString}`, {
             method: 'GET',
             headers: {
@@ -35,7 +38,10 @@ export default function PostList() {
         }).then(response => response.json())
           .then(response => {
               setPosts(response);
-          });
+              setHideLoader(true);
+          }).catch(() => {
+                setHideLoader(true);
+            });
     };
 
     const PostsGrid = () => {
@@ -47,6 +53,7 @@ export default function PostList() {
 
     return (
         <React.Fragment>
+            <Loader hide={hideLoader} />
             <section className='col-sm-12'>
                 <label htmlFor='city'>Miasto:</label>
                 <Autocomplete
@@ -56,7 +63,7 @@ export default function PostList() {
                     onPlaceSelected={onPlaceSelect}
                     types={['(cities)']}
                     aria-describedby={`${!!posts.length ? 'city-required-error' : null}`}
-                    componentRestrictions={{country: "pl"}}
+                    componentRestrictions={{country: 'pl'}}
                 />
                 <label id='label-distance' htmlFor='distance'>Odległość [km]</label>
                 <input type='number'

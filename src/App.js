@@ -33,7 +33,7 @@ class App extends React.Component {
                             <Routing/>
                         </div>
                     </main>
-                    <footer className="fixed-bottom border-top">
+                    <footer className="border-top">
                         footer content ?
                     </footer>
                 </Router>
