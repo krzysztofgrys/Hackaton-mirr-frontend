@@ -24,7 +24,7 @@ export default function Breadcrumbs() {
         .reduce((prev, curr) => [prev, ' > ', curr]);
 
     return (
-        <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" role='navigation' className='nav container'>
             <ol className="breadcrumb">{breadcrumbsRenderedElements}</ol>
         </nav>);
 }
