@@ -9,8 +9,8 @@ export default function PostGrid({posts}) {
     }
     const postsMap = posts.map((post, index) => <Item post={post} key={index} />);
     return (
-        <div className="col-sm-12">
-            <h1>Aktualne ogłoszenia</h1>
+        <div className="row">
+            <h1 className="w-100">Aktualne ogłoszenia</h1>
             {postsMap}
         </div>
     );
