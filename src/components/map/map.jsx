@@ -21,13 +21,12 @@ import {Map as GMap, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-rea
             <span></span>
             <GMap google={props.google} zoom={14}>
       
-              
+            
             </GMap>
         </div>
     );
 }
 
 export default GoogleApiWrapper({
-  apiKey: ('AIzaSyC0OYo0y89IrrKviqJE2vcb_vCcKYhde4k')
 })(Map)
 
